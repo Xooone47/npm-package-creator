@@ -10,4 +10,4 @@ export const format = (arr: Item[]) => {
   }));
 };
 
-export {getPath} from './utils';
+export {getPath} from '@/utils';

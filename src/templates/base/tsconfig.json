@@ -11,7 +11,11 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {                            /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "@/*": ["src/*"],
+    },
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*"]

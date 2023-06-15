@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const path = require('path');
+const path = require('path');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const esbuild = require('rollup-plugin-esbuild');
 const json = require('@rollup/plugin-json');
+const esbuild = require('rollup-plugin-esbuild');
 const dts = require('rollup-plugin-dts');
+const alias = require('@rollup/plugin-alias');
+// const alias = require('esbuild-plugin-alias');
+
 const rimraf = require('rimraf');
 // const childProcess = require('child_process');
 
@@ -14,6 +17,9 @@ const rimraf = require('rimraf');
 
 // 清理 dist 文件夹
 rimraf.sync('dist');
+
+const projectRootDir = path.resolve(__dirname);
+
 
 const extensions = ['.js', '.ts'];
 
@@ -34,6 +40,11 @@ module.exports = [
     plugins: [
       nodeResolve({
         extensions,
+      }),
+      alias({
+        entries: {
+          '@/': path.resolve(projectRootDir, 'src', '/'),
+        },
       }),
       esbuild.default({
         include: /\.[jt]sx?$/,
